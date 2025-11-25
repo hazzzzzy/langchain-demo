@@ -1,0 +1,2782 @@
+[
+    {
+        "table_name": "tb_agreement_company",
+        "table_description": "协议单位信息，表名为tb_agreement_company，包含协议单位ID、协议单位名称、协议单位号码、协议单位关联的酒店ID、协议单位的类型ID、协议单位的联系人、协议单位的联系手机号、协议单位的详细地址、协议单位的联系电话、协议单位的合同编号、协议单位的创建时间、协议单位的生效时间、协议单位的失效时间、协议单位的挂账状态 1-可用；0-不可用、协议单位的挂账额度、协议单位的删除状态、协议单位的余额",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "协议单位ID"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(100)",
+                "column_comment": "协议单位名称"
+            },
+            {
+                "column_name": "number",
+                "column_type": "varchar(20)",
+                "column_comment": "协议单位号码"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "协议单位关联的酒店ID"
+            },
+            {
+                "column_name": "type_id",
+                "column_type": "int",
+                "column_comment": "协议单位的类型ID"
+            },
+            {
+                "column_name": "link_person",
+                "column_type": "varchar(20)",
+                "column_comment": "协议单位的联系人"
+            },
+            {
+                "column_name": "link_tel",
+                "column_type": "varchar(20)",
+                "column_comment": "协议单位的联系手机号"
+            },
+            {
+                "column_name": "address",
+                "column_type": "varchar(255)",
+                "column_comment": "协议单位的详细地址"
+            },
+            {
+                "column_name": "tel",
+                "column_type": "varchar(20)",
+                "column_comment": "协议单位的联系电话"
+            },
+            {
+                "column_name": "document_num",
+                "column_type": "varchar(50)",
+                "column_comment": "协议单位的合同编号"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "协议单位的创建时间"
+            },
+            {
+                "column_name": "s_date",
+                "column_type": "date",
+                "column_comment": "协议单位的生效时间"
+            },
+            {
+                "column_name": "e_date",
+                "column_type": "date",
+                "column_comment": "协议单位的失效时间"
+            },
+            {
+                "column_name": "status",
+                "column_type": "int",
+                "column_comment": "协议单位的挂账状态 1-可用；0-不可用"
+            },
+            {
+                "column_name": "amount",
+                "column_type": "decimal(10,2)",
+                "column_comment": "协议单位的挂账额度"
+            },
+            {
+                "column_name": "is_delete",
+                "column_type": "int",
+                "column_comment": "协议单位的删除状态"
+            },
+            {
+                "column_name": "balance",
+                "column_type": "decimal(10,2)",
+                "column_comment": "协议单位的余额"
+            },
+            {
+                "column_name": "seller_id",
+                "column_type": "int",
+                "column_comment": "弃用"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_agreement_company_bill",
+        "table_description": "协议单位账单表，表名为tb_agreement_company_bill，包含协议单位的账单id、协议单位关联的酒店id、协议单位的id、该协议单位账单的操作员id、该协议单位账单的创建时间、该协议单位账单的创建日期、该协议单位账单关联的房单id、该协议单位账单关联的房间号、该协议单位账单关联的会员id、该协议单位账单的更新时间、该协议单位账单的状态 => 未结-0,已结-1、该协议单位账单的备注、该协议单位账单的原始凭证、该协议单位账单的金额、该协议单位账单关联的消费项或收款项、该协议单位账单的类型：0-消费 1-收款、账单ID、该协议单位账单的是否删除状态：0-正常，1删除、该协议单位账单关联的结算表ID",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "协议单位的账单id"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "协议单位关联的酒店id"
+            },
+            {
+                "column_name": "agreement_id",
+                "column_type": "int",
+                "column_comment": "协议单位的id"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "该协议单位账单的操作员id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "该协议单位账单的创建时间"
+            },
+            {
+                "column_name": "daily_date",
+                "column_type": "date",
+                "column_comment": "该协议单位账单的创建日期"
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "该协议单位账单关联的房单id"
+            },
+            {
+                "column_name": "door",
+                "column_type": "varchar(20)",
+                "column_comment": "该协议单位账单关联的房间号"
+            },
+            {
+                "column_name": "member_id",
+                "column_type": "int",
+                "column_comment": "该协议单位账单关联的会员id"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": "该协议单位账单的更新时间"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "该协议单位账单的状态 => 未结-0,已结-1"
+            },
+            {
+                "column_name": "remarks",
+                "column_type": "varchar(255)",
+                "column_comment": "该协议单位账单的备注"
+            },
+            {
+                "column_name": "voucherno",
+                "column_type": "varchar(50)",
+                "column_comment": "该协议单位账单的原始凭证"
+            },
+            {
+                "column_name": "money",
+                "column_type": "decimal(10,2)",
+                "column_comment": "该协议单位账单的金额"
+            },
+            {
+                "column_name": "sys_bill_id",
+                "column_type": "int",
+                "column_comment": "该协议单位账单关联的消费项或收款项"
+            },
+            {
+                "column_name": "type",
+                "column_type": "int",
+                "column_comment": "该协议单位账单的类型：0-消费 1-收款"
+            },
+            {
+                "column_name": "reckoning_id",
+                "column_type": "int",
+                "column_comment": "账单ID"
+            },
+            {
+                "column_name": "is_delete",
+                "column_type": "int",
+                "column_comment": "该协议单位账单的是否删除状态：0-正常，1删除"
+            },
+            {
+                "column_name": "stat_id",
+                "column_type": "int",
+                "column_comment": "该协议单位账单关联的结算表ID"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_agreement_company_bill_stat",
+        "table_description": "协议单位结算账单对应表，表名为tb_agreement_company_bill_stat，包含酒店id、被结算的协议单位账单ID（一个to_bill_id可对应多个bill_id）、结算后协议单位账单ID、结算时毫秒数",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            },
+            {
+                "column_name": "bill_id",
+                "column_type": "int",
+                "column_comment": "被结算的协议单位账单ID（一个to_bill_id可对应多个bill_id）"
+            },
+            {
+                "column_name": "to_bill_id",
+                "column_type": "int",
+                "column_comment": "结算后协议单位账单ID"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "mark",
+                "column_type": "varchar(50)",
+                "column_comment": "结算时毫秒数"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_agreement_company_type",
+        "table_description": "协议单位类型，表名为tb_agreement_company_type，包含协议单位类型id、类型名称、是否删除、类型对应的酒店id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "协议单位类型id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(100)",
+                "column_comment": "类型名称"
+            },
+            {
+                "column_name": "is_delete",
+                "column_type": "int",
+                "column_comment": "是否删除"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "类型对应的酒店id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_building",
+        "table_description": "酒店的楼栋信息，表名为tb_building，包含建筑名、状态(0-删除,1-在用)、酒店id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "楼栋id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(50)",
+                "column_comment": "楼栋名称"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "状态(0-删除,1-在用)"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_channel",
+        "table_description": "酒店入住的渠道信息，表名为tb_channel，包含渠道名称、渠道所属的酒店ID、渠道是否删除，0为正常1为已删除",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "渠道id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(100)",
+                "column_comment": "渠道名称"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "渠道所属的酒店ID"
+            },
+            {
+                "column_name": "is_delete",
+                "column_type": "int",
+                "column_comment": "渠道是否删除，0为正常1为已删除"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_coupon",
+        "table_description": "会员权益表，表名为tb_coupon，包含该会员权益的名称、该会员权益的价格、该会员权益的有效天数（自获取该权益之日算）、创建时间、更新时间、该会员权益的备注、该会员权益的状态:1:有效 ;2:过期; 99-删除、该会员权益关联的酒店id、该会员权益关联的价格方案id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "会员权益id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(50)",
+                "column_comment": "该会员权益的名称"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(8,2)",
+                "column_comment": "该会员权益的价格"
+            },
+            {
+                "column_name": "expire_day",
+                "column_type": "int",
+                "column_comment": "该会员权益的有效天数（自获取该权益之日算）"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "remarks",
+                "column_type": "varchar(255)",
+                "column_comment": "该会员权益的备注"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "该会员权益的状态:1:有效 ;2:过期; 99-删除"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "该会员权益关联的酒店id"
+            },
+            {
+                "column_name": "price_scheme",
+                "column_type": "int",
+                "column_comment": "该会员权益关联的价格方案id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_extending_room_log",
+        "table_description": "续房日志，表名为tb_extending_room_log，包含该续房日志对应的酒店id、该续房日志对应的房单id、类型：1-续房；2-夜核续房、该续房日志续房之前的离店时间、该续房日志续房之后的离店时间、备注、该续房日志续房对应的操作员工id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "续房日志id"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "该续房日志对应的酒店id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "该续房日志对应的房单id"
+            },
+            {
+                "column_name": "type",
+                "column_type": "tinyint",
+                "column_comment": "类型：1-续房；2-夜核续房"
+            },
+            {
+                "column_name": "old_out_time",
+                "column_type": "datetime",
+                "column_comment": "该续房日志续房之前的离店时间"
+            },
+            {
+                "column_name": "out_time",
+                "column_type": "datetime",
+                "column_comment": "该续房日志续房之后的离店时间"
+            },
+            {
+                "column_name": "remarks",
+                "column_type": "varchar(255)",
+                "column_comment": "备注"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "该续房日志续房对应的操作员工id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_floor",
+        "table_description": "酒店的楼层信息，表名为tb_floor，包含该楼层名称、该楼层状态(0-删除,1-在用)、该楼层关联的酒店id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "楼层id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(50)",
+                "column_comment": "该楼层名称"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "该楼层状态(0-删除,1-在用)"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "该楼层关联的酒店id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_goods",
+        "table_description": "商品信息表，表名为tb_goods，包含该商品的编号、该商品的名称、该商品所属类型id、该商品的售价、该商品是否能改价(0-不可,1-可以)、该商品的状态：1-在用,99-删除、该商品所属酒店id、创建时间、更新时间、该商品相关图片信息",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "商品id"
+            },
+            {
+                "column_name": "code",
+                "column_type": "varchar(50)",
+                "column_comment": "该商品的编号"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(20)",
+                "column_comment": "该商品的名称"
+            },
+            {
+                "column_name": "type_id",
+                "column_type": "int",
+                "column_comment": "该商品所属类型id"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "该商品的售价"
+            },
+            {
+                "column_name": "price_change",
+                "column_type": "tinyint",
+                "column_comment": "该商品是否能改价(0-不可,1-可以)"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint unsigned",
+                "column_comment": "该商品的状态：1-在用,99-删除"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "该商品所属酒店id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "img",
+                "column_type": "varchar(500)",
+                "column_comment": "该商品相关图片信息"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_goods_order",
+        "table_description": "商品订单表，表名为tb_goods_order，包含商品订单id、商品订单号、该商品关联的的房间订单id、商品订单金额、该商品订单的类型：0-零售，1-客房、该商品订单的创建员工id、该商品订关联的酒店id、该商品订单的创建日期、该商品订单的更新日期、该商品订单的备注、该商品订单是否当场支付",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "商品订单id"
+            },
+            {
+                "column_name": "num",
+                "column_type": "varchar(20)",
+                "column_comment": "商品订单号"
+            },
+            {
+                "column_name": "ware_house_id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "该商品关联的的房间订单id"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "商品订单金额"
+            },
+            {
+                "column_name": "type",
+                "column_type": "tinyint",
+                "column_comment": "该商品订单的类型：0-零售，1-客房"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "该商品订单的创建员工id"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "该商品订关联的酒店id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "该商品订单的创建日期"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": "该商品订单的更新日期"
+            },
+            {
+                "column_name": "remarks",
+                "column_type": "text",
+                "column_comment": "该商品订单的备注"
+            },
+            {
+                "column_name": "is_pay",
+                "column_type": "bit(1)",
+                "column_comment": "该商品订单是否当场支付"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_goods_order_info",
+        "table_description": "商品订单详细信息，表名为tb_goods_order_info，包含商品订单的类别，1-入单2-退单、该商品订单对应的账单id、该商品订单商品id、该商品订单对应的商品数量、该商品订单的商品单价、该商品订单的id、该商品订单对应的酒店id、该商品订单发生的日期",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "商品订单详细信息的id"
+            },
+            {
+                "column_name": "type",
+                "column_type": "int",
+                "column_comment": "商品订单的类别，1-入单2-退单"
+            },
+            {
+                "column_name": "reckoning_id",
+                "column_type": "int",
+                "column_comment": "该商品订单对应的账单id"
+            },
+            {
+                "column_name": "goods_id",
+                "column_type": "int",
+                "column_comment": "该商品订单商品id"
+            },
+            {
+                "column_name": "amount",
+                "column_type": "int",
+                "column_comment": "该商品订单对应的商品数量"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "该商品订单的商品单价"
+            },
+            {
+                "column_name": "order_id",
+                "column_type": "int",
+                "column_comment": "该商品订单的id"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "该商品订单对应的酒店id"
+            },
+            {
+                "column_name": "daily_time",
+                "column_type": "date",
+                "column_comment": "该商品订单发生的日期"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            }
+        ]
+    },
+    {
+        "table_name": "tb_goods_order_sys_bill_info",
+        "table_description": "商品订单的付款方式信息表，表名为tb_goods_order_sys_bill_info，包含该商品订单对应的付款方式、该商品订单的id、该商品订单的金额、该商品订单对应的酒店id、该商品订单对应的账单id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "sys_bill_id",
+                "column_type": "int",
+                "column_comment": "该商品订单对应的付款方式"
+            },
+            {
+                "column_name": "goods_order_id",
+                "column_type": "int",
+                "column_comment": "该商品订单的id"
+            },
+            {
+                "column_name": "money",
+                "column_type": "decimal(10,2)",
+                "column_comment": "该商品订单的金额"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "该商品订单对应的酒店id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "reckoning_id",
+                "column_type": "int",
+                "column_comment": "该商品订单对应的账单id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_goods_type",
+        "table_description": "商品类型表，表名为tb_goods_type，包含该商品编号、该商品名称、该商品状态：1-在用,99-删除、该商品对应的酒店id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "商品类型id"
+            },
+            {
+                "column_name": "code",
+                "column_type": "varchar(20)",
+                "column_comment": "该商品编号"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(20)",
+                "column_comment": "该商品名称"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "该商品状态：1-在用,99-删除"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "该商品对应的酒店id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            }
+        ]
+    },
+    {
+        "table_name": "tb_hotel",
+        "table_description": "酒店相关信息表，表名为tb_hotel，包含酒店id、酒店名称、酒店LOGO、酒店图片、酒店的详细地址、酒店所处经度、酒店所处纬度、酒店电话，以键值对展示，位置为键，电话为值、最早入住时间，忽略日期只取时间、最晚入住时间，忽略日期只取时间、过账日时间，忽略日期只取时间、最晚离店时间，忽略日期只取时间、最晚取消时间，忽略日期只取时间、允许取消入住的时间范围(单位:minute)、超时收费范围状态(0-关闭 1-开启)、半日租时间点、超过此范围收半天房费(单位:min,范围:30-300)、全日租时间点、超过此范围收全天房费(单位:min,范围:30-600)、预定自动取消时间（预订单到点自动取消）、钟点房最早开始时间，忽略日期只取时间、钟点房最晚结束时间，忽略日期只取时间、酒店加盟时间、酒店信息最后一次信息修改时间、夜审时间，忽略日期只取时间、计算每日订单开始时间、是否开启自助机服务，1为是0为否、是否开启小程序，1为是0为否、最后一次夜审时间、是否自动入账，1为是0为否、是否初始化角色，1为是0为否、是否夜审，1为是0为否、税率",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "酒店id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(30)",
+                "column_comment": "酒店名称"
+            },
+            {
+                "column_name": "logo",
+                "column_type": "varchar(120)",
+                "column_comment": "酒店LOGO"
+            },
+            {
+                "column_name": "imgs",
+                "column_type": "longtext",
+                "column_comment": "酒店图片"
+            },
+            {
+                "column_name": "address",
+                "column_type": "varchar(100)",
+                "column_comment": "酒店的详细地址"
+            },
+            {
+                "column_name": "longitude",
+                "column_type": "float(9,6) unsigned",
+                "column_comment": "酒店所处经度"
+            },
+            {
+                "column_name": "latitude",
+                "column_type": "float(9,6) unsigned",
+                "column_comment": "酒店所处纬度"
+            },
+            {
+                "column_name": "tels",
+                "column_type": "longtext",
+                "column_comment": "酒店电话，以键值对展示，位置为键，电话为值"
+            },
+            {
+                "column_name": "start_time",
+                "column_type": "datetime",
+                "column_comment": "最早入住时间，忽略日期只取时间"
+            },
+            {
+                "column_name": "end_time",
+                "column_type": "datetime",
+                "column_comment": "最晚入住时间，忽略日期只取时间"
+            },
+            {
+                "column_name": "post_data_time",
+                "column_type": "datetime",
+                "column_comment": "过账日时间，忽略日期只取时间"
+            },
+            {
+                "column_name": "checkout_time",
+                "column_type": "datetime",
+                "column_comment": "最晚离店时间，忽略日期只取时间"
+            },
+            {
+                "column_name": "cancel_time",
+                "column_type": "datetime",
+                "column_comment": "最晚取消时间，忽略日期只取时间"
+            },
+            {
+                "column_name": "cancel_time_range",
+                "column_type": "int",
+                "column_comment": "允许取消入住的时间范围(单位:minute)"
+            },
+            {
+                "column_name": "price_time_range_state",
+                "column_type": "int",
+                "column_comment": "超时收费范围状态(0-关闭 1-开启)"
+            },
+            {
+                "column_name": "half_price_time",
+                "column_type": "time",
+                "column_comment": "半日租时间点"
+            },
+            {
+                "column_name": "half_price_time_range",
+                "column_type": "int",
+                "column_comment": "超过此范围收半天房费(单位:min,范围:30-300)"
+            },
+            {
+                "column_name": "total_price_time",
+                "column_type": "time",
+                "column_comment": "全日租时间点"
+            },
+            {
+                "column_name": "total_price_time_range",
+                "column_type": "int",
+                "column_comment": "超过此范围收全天房费(单位:min,范围:30-600)"
+            },
+            {
+                "column_name": "cancel_booking_time_range",
+                "column_type": "int unsigned",
+                "column_comment": "预定自动取消时间（预订单到点自动取消）"
+            },
+            {
+                "column_name": "hourly_start_time",
+                "column_type": "datetime",
+                "column_comment": "钟点房最早开始时间，忽略日期只取时间"
+            },
+            {
+                "column_name": "hourly_end_time",
+                "column_type": "datetime",
+                "column_comment": "钟点房最晚结束时间，忽略日期只取时间"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "酒店加盟时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "酒店信息最后一次信息修改时间"
+            },
+            {
+                "column_name": "night_trial_time",
+                "column_type": "datetime",
+                "column_comment": "夜审时间，忽略日期只取时间"
+            },
+            {
+                "column_name": "stat_time",
+                "column_type": "varchar(20)",
+                "column_comment": "计算每日订单开始时间"
+            },
+            {
+                "column_name": "is_sst",
+                "column_type": "bit(1)",
+                "column_comment": "是否开启自助机服务，1为是0为否"
+            },
+            {
+                "column_name": "is_wxapplet",
+                "column_type": "bit(1)",
+                "column_comment": "是否开启小程序，1为是0为否"
+            },
+            {
+                "column_name": "last_check_time",
+                "column_type": "datetime",
+                "column_comment": "最后一次夜审时间"
+            },
+            {
+                "column_name": "auto_bill",
+                "column_type": "bit(1)",
+                "column_comment": "是否自动入账，1为是0为否"
+            },
+            {
+                "column_name": "is_init_role",
+                "column_type": "bit(1)",
+                "column_comment": "是否初始化角色，1为是0为否"
+            },
+            {
+                "column_name": "is_check_night",
+                "column_type": "bit(1)",
+                "column_comment": "是否夜审，1为是0为否"
+            },
+            {
+                "column_name": "tax",
+                "column_type": "double(5,4)",
+                "column_comment": "税率"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_live_type",
+        "table_description": "入住类型，表名为tb_live_type，包含入住类型名称",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "入住类型id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(50)",
+                "column_comment": "入住类型名称"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_member",
+        "table_description": "入住客信息表，表名为tb_member，包含姓名、电话、性别（00女，01男）、民族、生日、住址、身份证号、状态（40可用，其余不可用）、创建时间、更新时间、所属酒店id、会员等级ID、余额、备注",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "入住客id"
+            },
+            {
+                "column_name": "username",
+                "column_type": "varchar(100)",
+                "column_comment": "姓名，可能为多个（即字段值可能为张三 李四），查询时建议使用like且与`name`字段一起使用"
+            },
+            {
+                "column_name": "tel",
+                "column_type": "varchar(15)",
+                "column_comment": "电话"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(28)",
+                "column_comment": "姓名，可能为多个（即字段值可能为张三 李四），查询时建议使用like且与`username`字段一起使用"
+            },
+            {
+                "column_name": "gender",
+                "column_type": "bit(2)",
+                "column_comment": "性别（00女，01男）"
+            },
+            {
+                "column_name": "nation",
+                "column_type": "varchar(12)",
+                "column_comment": "民族"
+            },
+            {
+                "column_name": "birth",
+                "column_type": "date",
+                "column_comment": "生日"
+            },
+            {
+                "column_name": "addr",
+                "column_type": "varchar(255)",
+                "column_comment": "住址"
+            },
+            {
+                "column_name": "num",
+                "column_type": "varchar(50)",
+                "column_comment": "身份证号"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "状态（40可用，其余不可用）"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int unsigned",
+                "column_comment": "所属酒店id"
+            },
+            {
+                "column_name": "member_level_id",
+                "column_type": "tinyint(2) unsigned zerofill",
+                "column_comment": "会员等级ID"
+            },
+            {
+                "column_name": "balance",
+                "column_type": "decimal(10,0)",
+                "column_comment": "余额"
+            },
+            {
+                "column_name": "nationality_code",
+                "column_type": "varchar(20)",
+                "column_comment": ""
+            },
+            {
+                "column_name": "remark",
+                "column_type": "varchar(255)",
+                "column_comment": "备注"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_member_coupon",
+        "table_description": "会员与权益对应表，表名为tb_member_coupon，包含会员id、权益id、状态（1有效、2过期）、创建时间、办理的权益对应的金额、过期类型；1-时间段；2-领取后多少天有效、有效天数、酒店id、优惠券类型：1-会员权益、会员与权益的对应码",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": ""
+            },
+            {
+                "column_name": "uid",
+                "column_type": "int unsigned",
+                "column_comment": "会员id"
+            },
+            {
+                "column_name": "coupon_id",
+                "column_type": "int unsigned",
+                "column_comment": "权益id"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "状态（1有效、2过期）"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(8,2)",
+                "column_comment": "办理的权益对应的金额"
+            },
+            {
+                "column_name": "expire_type",
+                "column_type": "int",
+                "column_comment": "过期类型；1-时间段；2-领取后多少天有效"
+            },
+            {
+                "column_name": "expire_day",
+                "column_type": "int",
+                "column_comment": "有效天数"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            },
+            {
+                "column_name": "type",
+                "column_type": "tinyint unsigned",
+                "column_comment": "优惠券类型：1-会员权益"
+            },
+            {
+                "column_name": "num",
+                "column_type": "varchar(20)",
+                "column_comment": "会员与权益的对应码"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_member_integral_log",
+        "table_description": "会员余额与积分变动记录表，表名为tb_member_integral_log，包含酒店ID、创建时间、会员id、充值金额、充值积分数量、操作员ID、备注、事件名称、对应的房间订单id、备注、状态；1-已入账；0-已恢复",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "会员余额与积分变动记录id"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店ID"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "uid",
+                "column_type": "int",
+                "column_comment": "会员id"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "充值金额"
+            },
+            {
+                "column_name": "integral",
+                "column_type": "varchar(20)",
+                "column_comment": "充值积分数量"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "操作员ID"
+            },
+            {
+                "column_name": "remarks",
+                "column_type": "varchar(100)",
+                "column_comment": "备注"
+            },
+            {
+                "column_name": "event_name",
+                "column_type": "varchar(50)",
+                "column_comment": "事件名称"
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "对应的房间订单id"
+            },
+            {
+                "column_name": "mark",
+                "column_type": "varchar(20)",
+                "column_comment": "备注"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "状态；1-已入账；0-已恢复"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_member_level",
+        "table_description": "会员等级表，表名为tb_member_level，包含等级名称、酒店ID、累计多少积分可自动升级、积分累计倍率、状态;99-删除；1-可用、创建时间、更新时间",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "tinyint unsigned",
+                "column_comment": "会员等级id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(50)",
+                "column_comment": "等级名称"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店ID"
+            },
+            {
+                "column_name": "total_integral",
+                "column_type": "decimal(8,2) unsigned",
+                "column_comment": "累计多少积分可自动升级"
+            },
+            {
+                "column_name": "multiple",
+                "column_type": "decimal(8,2) unsigned",
+                "column_comment": "积分累计倍率"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "状态;99-删除；1-可用"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": "更新时间"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_member_recharge_log",
+        "table_description": "会员充值记录表，表名为tb_member_recharge_log，包含酒店ID、充值金额ID、充值金额、赠送金额、赠送积分、说明、凭证、操作员、充值时间、是否开票、充值方式，对应sys_bill_id表中的收款项、会员id、状态；1-正常；0-充值恢复、充值对应的账单id、销售员id、系统业态 1客房2温泉3餐饮4票务",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "会员充值记录id"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店ID"
+            },
+            {
+                "column_name": "recharge_price_id",
+                "column_type": "int unsigned",
+                "column_comment": "充值金额ID"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "充值金额"
+            },
+            {
+                "column_name": "give_price",
+                "column_type": "decimal(8,2)",
+                "column_comment": "赠送金额"
+            },
+            {
+                "column_name": "give_integral",
+                "column_type": "decimal(8,2)",
+                "column_comment": "赠送积分"
+            },
+            {
+                "column_name": "remarks",
+                "column_type": "varchar(255)",
+                "column_comment": "说明"
+            },
+            {
+                "column_name": "voucher",
+                "column_type": "varchar(50)",
+                "column_comment": "凭证"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "操作员"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "充值时间"
+            },
+            {
+                "column_name": "is_invoice",
+                "column_type": "bit(1)",
+                "column_comment": "是否开票"
+            },
+            {
+                "column_name": "pay_type",
+                "column_type": "int",
+                "column_comment": "充值方式，对应sys_bill_id表中的收款项"
+            },
+            {
+                "column_name": "uid",
+                "column_type": "int",
+                "column_comment": "会员id"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "状态；1-正常；0-充值恢复"
+            },
+            {
+                "column_name": "reckoning_id",
+                "column_type": "int",
+                "column_comment": "充值对应的账单id"
+            },
+            {
+                "column_name": "seller_id",
+                "column_type": "int",
+                "column_comment": "销售员id"
+            },
+            {
+                "column_name": "format",
+                "column_type": "int",
+                "column_comment": "系统业态 1客房2温泉3餐饮4票务"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_member_recharge_price",
+        "table_description": "会员充值套餐表，表名为tb_member_recharge_price，包含充值套餐名称、酒店ID、赠送积分、充值金额、赠送金额、说明、状态;99-删除；1-可用、创建时间、更新时间",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "tinyint unsigned",
+                "column_comment": "会员充值套餐id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(50)",
+                "column_comment": "充值套餐名称"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店ID"
+            },
+            {
+                "column_name": "give_integral",
+                "column_type": "decimal(8,2) unsigned",
+                "column_comment": "赠送积分"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(8,2) unsigned",
+                "column_comment": "充值金额"
+            },
+            {
+                "column_name": "give_price",
+                "column_type": "decimal(8,2)",
+                "column_comment": "赠送金额"
+            },
+            {
+                "column_name": "remarks",
+                "column_type": "varchar(255)",
+                "column_comment": "说明"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "状态;99-删除；1-可用"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": "更新时间"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_member_user",
+        "table_description": "会员信息表，表名为tb_member_user，包含酒店id、入住客id、会员卡号、名称、会员等级id、当前余额、当前积分、累计积分、手机号、证件号码、地址、性别、民族、生日、发票、兴趣爱好或其他备注、销售员、国籍、邮箱、消费总额、状态1-可用；0-停用、销售员id、人脸信息、默认0、有效期",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "会员信息id"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            },
+            {
+                "column_name": "member_id",
+                "column_type": "int",
+                "column_comment": "入住客id"
+            },
+            {
+                "column_name": "num",
+                "column_type": "varchar(50)",
+                "column_comment": "会员卡号"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(100)",
+                "column_comment": "名称"
+            },
+            {
+                "column_name": "level_id",
+                "column_type": "int",
+                "column_comment": "会员等级id"
+            },
+            {
+                "column_name": "money",
+                "column_type": "decimal(10,2)",
+                "column_comment": "当前余额"
+            },
+            {
+                "column_name": "integral",
+                "column_type": "decimal(10,2)",
+                "column_comment": "当前积分"
+            },
+            {
+                "column_name": "total_integral",
+                "column_type": "decimal(10,2)",
+                "column_comment": "累计积分"
+            },
+            {
+                "column_name": "phone",
+                "column_type": "varchar(20)",
+                "column_comment": "手机号"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "cid_num",
+                "column_type": "varchar(50)",
+                "column_comment": "证件号码"
+            },
+            {
+                "column_name": "addr",
+                "column_type": "varchar(100)",
+                "column_comment": "地址"
+            },
+            {
+                "column_name": "gender",
+                "column_type": "bit(1)",
+                "column_comment": "性别"
+            },
+            {
+                "column_name": "nation",
+                "column_type": "varchar(12)",
+                "column_comment": "民族"
+            },
+            {
+                "column_name": "birth",
+                "column_type": "varchar(20)",
+                "column_comment": "生日"
+            },
+            {
+                "column_name": "invoice",
+                "column_type": "varchar(100)",
+                "column_comment": "发票"
+            },
+            {
+                "column_name": "interest",
+                "column_type": "varchar(50)",
+                "column_comment": "兴趣爱好或其他备注"
+            },
+            {
+                "column_name": "salesperson",
+                "column_type": "int",
+                "column_comment": "销售员"
+            },
+            {
+                "column_name": "nationality",
+                "column_type": "varchar(100)",
+                "column_comment": "国籍"
+            },
+            {
+                "column_name": "email",
+                "column_type": "varchar(100)",
+                "column_comment": "邮箱"
+            },
+            {
+                "column_name": "consume_price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "消费总额"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "状态1-可用；0-停用"
+            },
+            {
+                "column_name": "seller_id",
+                "column_type": "int",
+                "column_comment": "销售员id"
+            },
+            {
+                "column_name": "facial_information",
+                "column_type": "longtext",
+                "column_comment": "人脸信息"
+            },
+            {
+                "column_name": "pay_member",
+                "column_type": "int",
+                "column_comment": "默认0"
+            },
+            {
+                "column_name": "period_of_validity",
+                "column_type": "datetime",
+                "column_comment": "有效期"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_member_user_consumption",
+        "table_description": "会员消费记录表，表名为tb_member_user_consumption，包含会员ID、消费金额、消费积分、创建时间、操作员工id、信息",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "bigint",
+                "column_comment": "会员消费记录id"
+            },
+            {
+                "column_name": "member_user_id",
+                "column_type": "int",
+                "column_comment": "会员ID"
+            },
+            {
+                "column_name": "money",
+                "column_type": "double",
+                "column_comment": "消费金额"
+            },
+            {
+                "column_name": "integral",
+                "column_type": "bigint",
+                "column_comment": "消费积分"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "操作员工id"
+            },
+            {
+                "column_name": "info",
+                "column_type": "varchar(255)",
+                "column_comment": "信息"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_order",
+        "table_description": "酒店订单表，一个订单关联多个房单，表名为tb_order，包含客房订单号、总价格、支付详情，例子：{\"付款方式\":\"微信\",\"付款人\":\"张三\",\"联系方式\":\"12324324\"}、预付金额付款方式、订单状态（61：结账离店，53：取消入住，54：预订取消，55：预订中，63：离店未结，64：在住已超时，112：在住，70：预订未到，51：代付款，其他：未知）、创建时间、更新时间、酒店Id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "酒店订单id"
+            },
+            {
+                "column_name": "num",
+                "column_type": "varchar(50)",
+                "column_comment": "客房订单号"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "总价格"
+            },
+            {
+                "column_name": "pay",
+                "column_type": "longtext",
+                "column_comment": "支付详情，例子：{\"付款方式\":\"微信\",\"付款人\":\"张三\",\"联系方式\":\"12324324\"}"
+            },
+            {
+                "column_name": "pay_way",
+                "column_type": "int",
+                "column_comment": "预付金额付款方式"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "订单状态（61：结账离店，53：取消入住，54：预订取消，55：预订中，63：离店未结，64：在住已超时，112：在住，70：预订未到，51：代付款，其他：未知）"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店Id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_order_room",
+        "table_description": "酒店房单表（多房单对应一个订单），表名为tb_order_room，包含房单id、酒店id、房间id、入住客，格式为入住客id组成的列表，如[1,2,3]、入住时间、退房时间、创建时间、更新时间、房单关联的订单id、状态（112:在住，53：取消入住，54：预订取消，55：预订中，61：离店已结账，63：离店未结账，64：已超时，99：房单被删除）、订单绑定的房型id、房单备注、价格方案、入住类型、渠道ID、订单类型：1-散客；2-会员；3-协议单位、订单类型ID、操作人",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "房单id"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int unsigned",
+                "column_comment": "酒店id"
+            },
+            {
+                "column_name": "room_id",
+                "column_type": "int unsigned",
+                "column_comment": "房间id"
+            },
+            {
+                "column_name": "ruZhuRen",
+                "column_type": "longtext",
+                "column_comment": "入住客，格式为入住客id组成的列表，如[1,2,3]"
+            },
+            {
+                "column_name": "inTime",
+                "column_type": "datetime",
+                "column_comment": "入住时间"
+            },
+            {
+                "column_name": "outTime",
+                "column_type": "datetime",
+                "column_comment": "退房时间"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "order_id",
+                "column_type": "int unsigned",
+                "column_comment": "房单关联的订单id"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "状态（112:在住，53：取消入住，54：预订取消，55：预订中，61：离店已结账，63：离店未结账，64：已超时，99：房单被删除）"
+            },
+            {
+                "column_name": "room_type_id",
+                "column_type": "int",
+                "column_comment": "订单绑定的房型id"
+            },
+            {
+                "column_name": "remark",
+                "column_type": "varchar(2550)",
+                "column_comment": "房单备注"
+            },
+            {
+                "column_name": "price_type_id",
+                "column_type": "int",
+                "column_comment": "价格方案"
+            },
+            {
+                "column_name": "live_type_id",
+                "column_type": "int",
+                "column_comment": "入住类型"
+            },
+            {
+                "column_name": "channel_id",
+                "column_type": "int",
+                "column_comment": "渠道ID"
+            },
+            {
+                "column_name": "type",
+                "column_type": "tinyint",
+                "column_comment": "订单类型：1-散客；2-会员；3-协议单位"
+            },
+            {
+                "column_name": "type_id",
+                "column_type": "int",
+                "column_comment": "订单类型ID"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "操作人"
+            },
+            {
+                "column_name": "seller_id",
+                "column_type": "int",
+                "column_comment": ""
+            }
+        ]
+    },
+    {
+        "table_name": "tb_order_room_meal_coupon",
+        "table_description": "餐券发放详情表，表名为tb_order_room_meal_coupon，包含餐券所属房单id、所属日期、可用数量、已使用数量、酒店id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "餐券所属房单id"
+            },
+            {
+                "column_name": "date",
+                "column_type": "date",
+                "column_comment": "所属日期"
+            },
+            {
+                "column_name": "num",
+                "column_type": "int",
+                "column_comment": "可用数量"
+            },
+            {
+                "column_name": "use_num",
+                "column_type": "int",
+                "column_comment": "已使用数量"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_order_room_meal_coupon_use_log",
+        "table_description": "餐券核销记录，表名为tb_order_room_meal_coupon_use_log，包含房单id、对应日期、核销数量、创建时间、酒店id、房间id、房号、入住客名字、操作员工id、入住客id、入住人数",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "餐券核销记录id"
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "房单id"
+            },
+            {
+                "column_name": "date",
+                "column_type": "date",
+                "column_comment": "对应日期"
+            },
+            {
+                "column_name": "num",
+                "column_type": "int",
+                "column_comment": "核销数量"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            },
+            {
+                "column_name": "room_id",
+                "column_type": "int",
+                "column_comment": "房间id"
+            },
+            {
+                "column_name": "door",
+                "column_type": "varchar(50)",
+                "column_comment": "房号"
+            },
+            {
+                "column_name": "guest_name",
+                "column_type": "varchar(50)",
+                "column_comment": "入住客名字"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "操作员工id"
+            },
+            {
+                "column_name": "member_id",
+                "column_type": "int",
+                "column_comment": "入住客id"
+            },
+            {
+                "column_name": "people",
+                "column_type": "int",
+                "column_comment": "入住人数"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_order_room_price",
+        "table_description": "房间价格记录表，表名为tb_order_room_price，包含房单ID、营业日期、创建时间、价格",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "房间价格记录id"
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "房单ID"
+            },
+            {
+                "column_name": "date",
+                "column_type": "date",
+                "column_comment": "营业日期"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "价格"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_order_room_price_log",
+        "table_description": "房价变更记录，表名为tb_order_room_price_log，包含房单id、房号、房型id、入住客id、创建时间、开始日期、结束日期、价格、原房价、操作员ID、备注、渠道ID、价格方案ID、酒店ID、订单ID",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "房价变更记录id"
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "房单id"
+            },
+            {
+                "column_name": "door",
+                "column_type": "varchar(50)",
+                "column_comment": "房号"
+            },
+            {
+                "column_name": "room_type_id",
+                "column_type": "int",
+                "column_comment": "房型id"
+            },
+            {
+                "column_name": "member_id",
+                "column_type": "int",
+                "column_comment": "入住客id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "start_date",
+                "column_type": "date",
+                "column_comment": "开始日期"
+            },
+            {
+                "column_name": "end_date",
+                "column_type": "date",
+                "column_comment": "结束日期"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "价格"
+            },
+            {
+                "column_name": "old_price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "原房价"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "操作员ID"
+            },
+            {
+                "column_name": "remark",
+                "column_type": "varchar(2500)",
+                "column_comment": "备注"
+            },
+            {
+                "column_name": "channel_id",
+                "column_type": "int",
+                "column_comment": "渠道ID"
+            },
+            {
+                "column_name": "price_type_id",
+                "column_type": "int",
+                "column_comment": "价格方案ID"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店ID"
+            },
+            {
+                "column_name": "order_id",
+                "column_type": "int",
+                "column_comment": "订单ID"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_price_type",
+        "table_description": "价格方案表，表名为tb_price_type，包含价格方案名称、对应酒店id、方案类别(1-渠道，2-会员，3-协议)、可使用本价格方案的类别，以category字段为准，存在多个使用逗号分割(字段category=1为渠道，那么本字段为具体渠道id；字段category=2为会员，那么本字段为会员等级id；字段category=3为协议单位，那么本字段为协议单位id)、状态(1-可用，66-停用，99-不可用)、说明、方案类型(0-门市方案，1-小程序方案，2-自助机方案，3-自定义方案)、跟随类型(0-单独设置，1-百分比，2-差价)、跟随的价格方案id、百分比、差价",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "价格方案id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(100)",
+                "column_comment": "价格方案名称"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "对应酒店id"
+            },
+            {
+                "column_name": "category",
+                "column_type": "tinyint",
+                "column_comment": "方案类别(1-渠道，2-会员，3-协议)"
+            },
+            {
+                "column_name": "scene_ids",
+                "column_type": "varchar(100)",
+                "column_comment": "可使用本价格方案的类别，以category字段为准，存在多个使用逗号分割(字段category=1为渠道，那么本字段为具体渠道id；字段category=2为会员，那么本字段为会员等级id；字段category=3为协议单位，那么本字段为协议单位id)"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "状态(1-可用，66-停用，99-不可用)"
+            },
+            {
+                "column_name": "info",
+                "column_type": "varchar(255)",
+                "column_comment": "说明"
+            },
+            {
+                "column_name": "type",
+                "column_type": "tinyint",
+                "column_comment": "方案类型(0-门市方案，1-小程序方案，2-自助机方案，3-自定义方案)"
+            },
+            {
+                "column_name": "follow_type",
+                "column_type": "tinyint",
+                "column_comment": "跟随类型(0-单独设置，1-百分比，2-差价)"
+            },
+            {
+                "column_name": "base_price_type_id",
+                "column_type": "int unsigned",
+                "column_comment": "跟随的价格方案id"
+            },
+            {
+                "column_name": "percent",
+                "column_type": "double(6,2)",
+                "column_comment": "百分比"
+            },
+            {
+                "column_name": "difference",
+                "column_type": "double(6,2)",
+                "column_comment": "差价"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_reckoning",
+        "table_description": "消费账单表，表名为tb_reckoning，包含消费收款项类别、金额(负数为冲减)、数量(-1的话为冲减)、对应的房间id、对应的房单id、操作员id、入住客id、状态（未结-0,已结-1,转账-2,冲减-3）、是否为结账结算的账单 : 0-否 1-是、是否为转账 : 0-不是 1-转出账 2-转入账、结账时间戳、营业时间、创建时间、修改时间、备注、酒店id、会员余额、渠道id、是否为会员权益相关的帐单（1-是购买会员权益的账单，0-不是）",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": "消费账单id"
+            },
+            {
+                "column_name": "sys_bill_id",
+                "column_type": "int",
+                "column_comment": "消费收款项类别"
+            },
+            {
+                "column_name": "money",
+                "column_type": "varchar(45)",
+                "column_comment": "金额(负数为冲减)"
+            },
+            {
+                "column_name": "count",
+                "column_type": "int",
+                "column_comment": "数量(-1的话为冲减)"
+            },
+            {
+                "column_name": "room_id",
+                "column_type": "int",
+                "column_comment": "对应的房间id"
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "对应的房单id"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "操作员id"
+            },
+            {
+                "column_name": "member_id",
+                "column_type": "varchar(20)",
+                "column_comment": "入住客id"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "状态（未结-0,已结-1,转账-2,冲减-3）"
+            },
+            {
+                "column_name": "is_check_out",
+                "column_type": "int",
+                "column_comment": "是否为结账结算的账单 : 0-否 1-是"
+            },
+            {
+                "column_name": "is_transfer",
+                "column_type": "int",
+                "column_comment": "是否为转账 : 0-不是 1-转出账 2-转入账"
+            },
+            {
+                "column_name": "mark",
+                "column_type": "varchar(20)",
+                "column_comment": "结账时间戳"
+            },
+            {
+                "column_name": "daily_time",
+                "column_type": "date",
+                "column_comment": "营业时间"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "修改时间"
+            },
+            {
+                "column_name": "remarks",
+                "column_type": "text",
+                "column_comment": "备注"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            },
+            {
+                "column_name": "member_user_money",
+                "column_type": "decimal(10,2)",
+                "column_comment": "会员余额"
+            },
+            {
+                "column_name": "channel_id",
+                "column_type": "int",
+                "column_comment": "渠道id"
+            },
+            {
+                "column_name": "member_rights",
+                "column_type": "int",
+                "column_comment": "是否为会员权益相关的帐单（1-是购买会员权益的账单，0-不是）"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_reckoning_stat",
+        "table_description": "房单消费统计汇总，表名为tb_reckoning_stat，包含线上收的押金（预授权金额）、结算金额、消费金额、其他支付=结算金额-余额金额、余额支付（会员余额支付金额）、订单房间id、创建时间、修改时间、酒店id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "online_deposit",
+                "column_type": "decimal(20,2)",
+                "column_comment": "线上收的押金（预授权金额）"
+            },
+            {
+                "column_name": "settlement",
+                "column_type": "decimal(20,2)",
+                "column_comment": "结算金额"
+            },
+            {
+                "column_name": "charge",
+                "column_type": "decimal(20,2)",
+                "column_comment": "消费金额"
+            },
+            {
+                "column_name": "other_pay",
+                "column_type": "decimal(20,2)",
+                "column_comment": "其他支付=结算金额-余额金额"
+            },
+            {
+                "column_name": "balance_pay",
+                "column_type": "decimal(20,2)",
+                "column_comment": "余额支付（会员余额支付金额）"
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "订单房间id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "修改时间"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_room",
+        "table_description": "房间信息表，表名为tb_room，包含房间id、房间所处楼栋id、房间所处楼层id、房间号、房间状态（4：空闲；2：打扫；3：维修；7：停用，99：删除）、房间创建时间、房间更新时间、房间对应的锁号、房间类型",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "房间id"
+            },
+            {
+                "column_name": "building_id",
+                "column_type": "int",
+                "column_comment": "房间所处楼栋id"
+            },
+            {
+                "column_name": "floor_id",
+                "column_type": "int",
+                "column_comment": "房间所处楼层id"
+            },
+            {
+                "column_name": "door",
+                "column_type": "varchar(20)",
+                "column_comment": "房间号"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "房间状态（4：空闲；2：打扫；3：维修；7：停用，99：删除）"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "房间创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "房间更新时间"
+            },
+            {
+                "column_name": "lock_id",
+                "column_type": "int unsigned",
+                "column_comment": "房间对应的锁号"
+            },
+            {
+                "column_name": "type_id",
+                "column_type": "int unsigned",
+                "column_comment": "房间类型"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_room_price_plan",
+        "table_description": "价格方案，表名为tb_room_price_plan，包含价格方案id、房型id、平日价、周末价、附带餐券数量、附带温泉券数量",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "价格方案"
+            },
+            {
+                "column_name": "price_type_id",
+                "column_type": "int unsigned",
+                "column_comment": "价格方案id"
+            },
+            {
+                "column_name": "room_type_id",
+                "column_type": "int unsigned",
+                "column_comment": "房型id"
+            },
+            {
+                "column_name": "weekday_price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "平日价"
+            },
+            {
+                "column_name": "weekend_price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "周末价"
+            },
+            {
+                "column_name": "meal_coupon_num",
+                "column_type": "int",
+                "column_comment": "附带餐券数量"
+            },
+            {
+                "column_name": "hot_spring_ticket_num",
+                "column_type": "int",
+                "column_comment": "附带温泉券数量"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_room_service_log",
+        "table_description": "房间打扫日志，表名为tb_room_service_log，包含发生日期、酒店id、分配给的员工id、房间id、状态；1-待验收；2-通过；-1:不通过;99-已撤销、创建时间、营业日期、房间状态；1-退脏房；2-续脏房、验收员工id、验收时间、打扫状态；1-待打扫；2-完成;99-已撤销",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "date",
+                "column_type": "date",
+                "column_comment": "发生日期"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "分配给的员工id"
+            },
+            {
+                "column_name": "room_id",
+                "column_type": "int",
+                "column_comment": "房间id"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "状态；1-待验收；2-通过；-1:不通过;99-已撤销"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "daily_time",
+                "column_type": "date",
+                "column_comment": "营业日期"
+            },
+            {
+                "column_name": "room_state",
+                "column_type": "int",
+                "column_comment": "房间状态；1-退脏房；2-续脏房"
+            },
+            {
+                "column_name": "check_staff_id",
+                "column_type": "int",
+                "column_comment": "验收员工id"
+            },
+            {
+                "column_name": "check_time",
+                "column_type": "datetime",
+                "column_comment": "验收时间"
+            },
+            {
+                "column_name": "clean_state",
+                "column_type": "int",
+                "column_comment": "打扫状态；1-待打扫；2-完成;99-已撤销"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_room_state_log",
+        "table_description": "房态变更日志，表名为tb_room_state_log，包含房间id、房号、操作的员工id、创建时间、具体描述、原因、结束时间、关联的酒店id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "room_id",
+                "column_type": "int",
+                "column_comment": "房间id"
+            },
+            {
+                "column_name": "door",
+                "column_type": "varchar(50)",
+                "column_comment": "房号"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "操作的员工id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "desc",
+                "column_type": "varchar(1024)",
+                "column_comment": "具体描述"
+            },
+            {
+                "column_name": "reason",
+                "column_type": "varchar(255)",
+                "column_comment": "原因"
+            },
+            {
+                "column_name": "end_time",
+                "column_type": "datetime",
+                "column_comment": "结束时间"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "关联的酒店id"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_room_type",
+        "table_description": "房间类型相关信息表，表名为tb_room_type，包含该房间类型名称、该房间类型的面积范围(逗号分隔)、该房间类型人数上限、该房间类型默认价格、该房间类型的状态(正常-41，删除-99)、该房间类型的床数量(单位:个)、该房间类型的床宽(单位:米)、该房间类型的图片、该房间类型的创建时间、该房间类型的更新时间、该房间类型的备注、该房间类型所属酒店id、该房间类型的超时收费金额、该房间类型的餐券数量、该房间类型的所需押金、该房间类型的排序",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": ""
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(20)",
+                "column_comment": "该房间类型名称"
+            },
+            {
+                "column_name": "area",
+                "column_type": "varchar(255)",
+                "column_comment": "该房间类型的面积范围(逗号分隔)"
+            },
+            {
+                "column_name": "capacity",
+                "column_type": "tinyint",
+                "column_comment": "该房间类型人数上限"
+            },
+            {
+                "column_name": "price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "该房间类型默认价格"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "该房间类型的状态(正常-41，删除-99)"
+            },
+            {
+                "column_name": "bed_num",
+                "column_type": "int",
+                "column_comment": "该房间类型的床数量(单位:个)"
+            },
+            {
+                "column_name": "bed_width",
+                "column_type": "double(10,2)",
+                "column_comment": "该房间类型的床宽(单位:米)"
+            },
+            {
+                "column_name": "imgs",
+                "column_type": "longtext",
+                "column_comment": "该房间类型的图片"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "该房间类型的创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "该房间类型的更新时间"
+            },
+            {
+                "column_name": "info",
+                "column_type": "varchar(255)",
+                "column_comment": "该房间类型的备注"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int unsigned",
+                "column_comment": "该房间类型所属酒店id"
+            },
+            {
+                "column_name": "overtime_price",
+                "column_type": "decimal(10,2)",
+                "column_comment": "该房间类型的超时收费金额"
+            },
+            {
+                "column_name": "meal_coupon",
+                "column_type": "int",
+                "column_comment": "该房间类型的餐券数量"
+            },
+            {
+                "column_name": "deposit",
+                "column_type": "decimal(10,2)",
+                "column_comment": "该房间类型的所需押金"
+            },
+            {
+                "column_name": "sort",
+                "column_type": "int",
+                "column_comment": "该房间类型的排序"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_seller",
+        "table_description": "销售员信息表，表名为tb_seller，包含关联的酒店id、销售员姓名、销售员类型id、销售员备注、0删除 1 可用、创建时间、更新时间、关联的温泉id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "关联的酒店id"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(255)",
+                "column_comment": "销售员姓名"
+            },
+            {
+                "column_name": "type_id",
+                "column_type": "int",
+                "column_comment": "销售员类型id"
+            },
+            {
+                "column_name": "remark",
+                "column_type": "varchar(255)",
+                "column_comment": "销售员备注"
+            },
+            {
+                "column_name": "status",
+                "column_type": "int",
+                "column_comment": "0删除 1 可用"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime(6)",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime(6)",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "hot_spring_id",
+                "column_type": "bigint",
+                "column_comment": "关联的温泉id"
+            },
+            {
+                "column_name": "module_id",
+                "column_type": "bigint",
+                "column_comment": "弃用"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_seller_type",
+        "table_description": "销售员类型信息表，表名为tb_seller_type，包含关联酒店id、类型名称、备注、0 删除，1可用、创建时间、更新时间、关联的温泉id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "关联酒店id"
+            },
+            {
+                "column_name": "type_name",
+                "column_type": "varchar(255)",
+                "column_comment": "类型名称"
+            },
+            {
+                "column_name": "remark",
+                "column_type": "varchar(255)",
+                "column_comment": "备注"
+            },
+            {
+                "column_name": "status",
+                "column_type": "int",
+                "column_comment": "0 删除，1可用"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime(6)",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime(6)",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "hot_spring_id",
+                "column_type": "bigint",
+                "column_comment": "关联的温泉id"
+            },
+            {
+                "column_name": "module_id",
+                "column_type": "bigint",
+                "column_comment": "弃用"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_staff",
+        "table_description": "员工信息表，表名为tb_staff，包含酒店员工id、酒店员工登录账号，等同于tel字段、酒店员工联系电话、酒店员工姓名、酒店员工身份证号、创建时间、更新时间、状态:99是删除状态，101为正常",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "酒店员工id"
+            },
+            {
+                "column_name": "username",
+                "column_type": "varchar(20)",
+                "column_comment": "酒店员工登录账号，等同于tel字段"
+            },
+            {
+                "column_name": "tel",
+                "column_type": "varchar(15)",
+                "column_comment": "酒店员工联系电话"
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(28)",
+                "column_comment": "酒店员工姓名"
+            },
+            {
+                "column_name": "num",
+                "column_type": "varchar(20)",
+                "column_comment": "酒店员工身份证号"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "状态:99是删除状态，101为正常"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_staff_hotel",
+        "table_description": "员工与酒店关联表，表名为tb_staff_hotel，包含编号、对应的酒店id、对应的员工id、创建时间、更新时间、状态:99是删除状态",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int unsigned",
+                "column_comment": "编号"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "对应的酒店id"
+            },
+            {
+                "column_name": "staff_id",
+                "column_type": "int",
+                "column_comment": "对应的员工id"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "timestamp",
+                "column_comment": "更新时间"
+            },
+            {
+                "column_name": "state",
+                "column_type": "tinyint",
+                "column_comment": "状态:99是删除状态"
+            },
+            {
+                "column_name": "role_id",
+                "column_type": "int",
+                "column_comment": "弃用"
+            }
+        ]
+    },
+    {
+        "table_name": "tb_sys_bill",
+        "table_description": "消费收款项设置，表名为tb_sys_bill，包含名称、排序、类型 0-消费 1-收款、种类 0-订单详情入账 1-夜审 2-线上相关 3-餐券 4-赔偿 5-房费 6-系统 7-消费品、此类账单是否能部分冲减(0-否,1-能)、是否为支出、酒店id(0为系统项)、状态 0-停用,1-启用,9-删除、入账的隐藏/显示(0-隐藏 1-显示)、结账的隐藏/显示(0-隐藏 1-显示)、哑房账的隐藏/显示(0-隐藏 1-显示)",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "name",
+                "column_type": "varchar(50)",
+                "column_comment": "名称"
+            },
+            {
+                "column_name": "sort",
+                "column_type": "int",
+                "column_comment": "排序"
+            },
+            {
+                "column_name": "type",
+                "column_type": "int",
+                "column_comment": "类型 0-消费 1-收款"
+            },
+            {
+                "column_name": "kind",
+                "column_type": "int",
+                "column_comment": "种类 0-订单详情入账 1-夜审 2-线上相关 3-餐券 4-赔偿 5-房费 6-系统 7-消费品"
+            },
+            {
+                "column_name": "part_minus",
+                "column_type": "tinyint",
+                "column_comment": "此类账单是否能部分冲减(0-否,1-能)"
+            },
+            {
+                "column_name": "is_pay_out",
+                "column_type": "int",
+                "column_comment": "是否为支出"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "酒店id(0为系统项)"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "状态 0-停用,1-启用,9-删除"
+            },
+            {
+                "column_name": "is_reveal",
+                "column_type": "int",
+                "column_comment": "入账的隐藏/显示(0-隐藏 1-显示)"
+            },
+            {
+                "column_name": "check_out_reveal",
+                "column_type": "int",
+                "column_comment": "结账的隐藏/显示(0-隐藏 1-显示)"
+            },
+            {
+                "column_name": "pm_reveal",
+                "column_type": "int",
+                "column_comment": "哑房账的隐藏/显示(0-隐藏 1-显示)"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "update_time",
+                "column_type": "datetime",
+                "column_comment": ""
+            },
+            {
+                "column_name": "show_type",
+                "column_type": "text",
+                "column_comment": ""
+            }
+        ]
+    },
+    {
+        "table_name": "tb_view_ota",
+        "table_description": "View 'db_zxwl_test.tb_view_ota' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them，表名为tb_view_ota，包含",
+        "fields": []
+    },
+    {
+        "table_name": "tm_order_room_hot_spring_ticket",
+        "table_description": "房单对应温泉票分配与使用记录统计表，表名为tm_order_room_hot_spring_ticket，包含关联的房单id、发生日期、温泉票数量、温泉票使用数量、关联的酒店id",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "int",
+                "column_comment": ""
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "int",
+                "column_comment": "关联的房单id"
+            },
+            {
+                "column_name": "date",
+                "column_type": "date",
+                "column_comment": "发生日期"
+            },
+            {
+                "column_name": "num",
+                "column_type": "int",
+                "column_comment": "温泉票数量"
+            },
+            {
+                "column_name": "use_num",
+                "column_type": "int",
+                "column_comment": "温泉票使用数量"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "int",
+                "column_comment": "关联的酒店id"
+            }
+        ]
+    },
+    {
+        "table_name": "tm_pre_empower_pay",
+        "table_description": "预授权明细，表名为tm_pre_empower_pay，包含订单ID、渠道名称、预授权单号、预授权金额、备注、创建时间、状态(1-已录入,2-已解冻)、房单ID、解冻时间、酒店ID、预授权系统订单号",
+        "fields": [
+            {
+                "column_name": "id",
+                "column_type": "bigint",
+                "column_comment": ""
+            },
+            {
+                "column_name": "order_id",
+                "column_type": "bigint",
+                "column_comment": "订单ID"
+            },
+            {
+                "column_name": "pre_channel",
+                "column_type": "varchar(255)",
+                "column_comment": "渠道名称"
+            },
+            {
+                "column_name": "pre_number",
+                "column_type": "varchar(255)",
+                "column_comment": "预授权单号"
+            },
+            {
+                "column_name": "pre_money",
+                "column_type": "double",
+                "column_comment": "预授权金额"
+            },
+            {
+                "column_name": "remark",
+                "column_type": "varchar(255)",
+                "column_comment": "备注"
+            },
+            {
+                "column_name": "create_time",
+                "column_type": "datetime",
+                "column_comment": "创建时间"
+            },
+            {
+                "column_name": "state",
+                "column_type": "int",
+                "column_comment": "状态(1-已录入,2-已解冻)"
+            },
+            {
+                "column_name": "order_room_id",
+                "column_type": "bigint",
+                "column_comment": "房单ID"
+            },
+            {
+                "column_name": "unfreeze_time",
+                "column_type": "datetime",
+                "column_comment": "解冻时间"
+            },
+            {
+                "column_name": "hotel_id",
+                "column_type": "bigint",
+                "column_comment": "酒店ID"
+            },
+            {
+                "column_name": "client_sn",
+                "column_type": "varchar(255)",
+                "column_comment": "预授权系统订单号"
+            }
+        ]
+    }
+]

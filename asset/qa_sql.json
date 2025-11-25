@@ -1,0 +1,7 @@
+[
+  {
+    "q": "今日/昨天/前天/某天的营收如何/收入多少/利润多少",
+    "a": "SELECT SUM(tr.money) FROM tb_reckoning tr WHERE tr.daily_time=\"{要查询的日期}\" AND tr.hotel_id={要查询的酒店id} AND tr.sys_bill_id IN (SELECT id FROM tb_sys_bill WHERE type=1)",
+    "remark": "该sql只适配于单一时间维度查询，如今日、昨日、前日或某一天等"
+  }
+]

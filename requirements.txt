@@ -1,0 +1,10 @@
+langchain
+langchain-chroma
+langchain-deepseek
+langgraph
+langsmith
+langchain-huggingface
+
+pymysql
+sqlalchemy
+sentence-transformers

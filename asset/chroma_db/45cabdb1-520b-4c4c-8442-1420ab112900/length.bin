@@ -1,0 +1,1 @@
+invalid type: string "  - id (bigint): \n  - order_id (bigint): 订单ID\n  - pre_channel (varchar(255)): 渠道名称\n  - pre_number (varchar(255)): 预授权单号\n  - pre_money (double): 预授权金额\n  - remark (varchar(255)): 备注\n  - create_time (datetime): 创建时间\n  - state (int): 状态(1-已录入,2-已解冻)\n  - order_room_id (bigint): 房单ID\n: 更新时间\n", expecte
