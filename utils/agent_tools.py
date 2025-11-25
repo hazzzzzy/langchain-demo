@@ -46,6 +46,7 @@ def agent_search_vector(query, k=5, min_score: float = 2.0):
 
     Args:
         query (str): 需要检索的查询文本（如用户的问题或关键词）。
+        k(int): 返回的相关表结构文档数量
 
     Returns:
         List[Document]: 过滤后的相关文档列表。
@@ -58,6 +59,7 @@ def agent_search_vector(query, k=5, min_score: float = 2.0):
     result = []
     for doc, score in search_result:
         if score < min_score:
+            print(doc.metadata['table_name'])
             result.append(doc)
     return result
 

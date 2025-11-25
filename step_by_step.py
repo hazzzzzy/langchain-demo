@@ -11,7 +11,7 @@ from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
 
 from config.step_by_step_prompt import AGENT_SYSTEM_PROMPT, AGENT_USER_PROMPT
-from utils.agent_tools import query_mysql
+from utils.agent_tools import agent_search_vector, query_mysql
 
 os.environ["LANGCHAIN_PROJECT"] = "Text2SQL_Agent"
 
@@ -25,7 +25,7 @@ class AgentState(TypedDict):
 # 1. 初始化 LLM 并绑定工具
 # bind_tools 让 DeepSeek 知道它有了“查数据库”的能力
 llm = ChatDeepSeek(model="deepseek-chat", temperature=0)
-tools = [query_mysql]
+tools = [query_mysql, agent_search_vector]
 llm_with_tools = llm.bind_tools(tools)
 
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     app = build_graph()
     # create_visual_graph_pic(app, 'step_by_step')
 
-    question = '给我当前酒店的信息'
+    question = '哪个协议单位欠款最多'
     inputs = {
         "messages": [
             SystemMessage(content=AGENT_SYSTEM_PROMPT.format(hotel_id)),
@@ -105,27 +105,27 @@ if __name__ == '__main__':
     # 但这里我们用默认模式，只获取增量更新，这样更方便看每一步做了什么
     # for event in app.stream(inputs):
     #     print(event)
-        # 1. 捕获 Agent 的思考与行动
-        # if "agent" in event:
-        #     message = event["agent"]["messages"][0]
-        #     content = message.content
-        #     tool_calls = message.tool_calls
-        #
-        #     # 打印 AI 的思考文本 (如果有)
-        #     if content:
-        #         print(f"\n🤖 [AI 思考]: {content}")
-        #
-        #     # 打印 AI 决定调用的工具
-        #     if tool_calls:
-        #         for tc in tool_calls:
-        #             print(f"   👉 [准备行动]: 调用工具 {tc['name']}")
-        #             print(f"      参数: {tc['args']}")
-        #
-        # # 2. 捕获工具的返回结果
-        # elif "tools" in event:
-        #     # ToolNode 返回的是 ToolMessage
-        #     message = event["tools"]["messages"][0]
-        #     print(f"\n🔍 [工具返回结果]: {message.content[:200]}...")  # 只打印前200字防止刷屏
+    # 1. 捕获 Agent 的思考与行动
+    # if "agent" in event:
+    #     message = event["agent"]["messages"][0]
+    #     content = message.content
+    #     tool_calls = message.tool_calls
+    #
+    #     # 打印 AI 的思考文本 (如果有)
+    #     if content:
+    #         print(f"\n🤖 [AI 思考]: {content}")
+    #
+    #     # 打印 AI 决定调用的工具
+    #     if tool_calls:
+    #         for tc in tool_calls:
+    #             print(f"   👉 [准备行动]: 调用工具 {tc['name']}")
+    #             print(f"      参数: {tc['args']}")
+    #
+    # # 2. 捕获工具的返回结果
+    # elif "tools" in event:
+    #     # ToolNode 返回的是 ToolMessage
+    #     message = event["tools"]["messages"][0]
+    #     print(f"\n🔍 [工具返回结果]: {message.content[:200]}...")  # 只打印前200字防止刷屏
 
     # print("\n====== 运行结束 ======")
 

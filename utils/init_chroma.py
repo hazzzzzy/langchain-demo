@@ -32,7 +32,7 @@ def search_vector(vs, query, k=5, min_score: float = 2.0):
 
 if __name__ == '__main__':
     question = '昨日总收入多少'
-    vs_qa = load_vectorstore('qa_sql')
+    vs_qa = load_vectorstore('table_structure')
     qa_search_result = search_vector(vs_qa, question)
 
     r = search_vector(vs_qa, question)
