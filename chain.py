@@ -7,9 +7,8 @@ from langchain_deepseek import ChatDeepSeek
 from langgraph.constants import END
 from langgraph.graph import StateGraph
 
-from config.prompt import TEXT2SQL_GEN_SYSTEM_PROMPT, TEXT2SQL_GEN_USER_PROMPT, TEXT2SQL_SUMMARY_SYSTEM_PROMPT, \
+from config.prompt.prompt import TEXT2SQL_GEN_SYSTEM_PROMPT, TEXT2SQL_GEN_USER_PROMPT, TEXT2SQL_SUMMARY_SYSTEM_PROMPT, \
     TEXT2SQL_SUMMARY_USER_PROMPT
-from utils.create_visual_graph_pic import create_visual_graph_pic
 from utils.init_chroma import search_vector, load_vectorstore
 from utils.tools import query_mysql
 
@@ -179,7 +178,7 @@ def build_graph():
     )
 
     workflow.add_edge("answer", END)  # 答案生成完 -> 结束
-
+    # todo: 加个整理答案的节点
     # 6. 编译图
     app = workflow.compile()
     return app

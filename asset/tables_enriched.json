@@ -881,6 +881,11 @@
                 "column_name": "tax",
                 "column_type": "double(5,4)",
                 "column_comment": "税率"
+            },
+                        {
+                "column_name": "state",
+                "column_type": "bit(1)",
+                "column_comment": "酒店营业状态，31-开启，51-关闭"
             }
         ]
     },
@@ -1937,7 +1942,7 @@
     },
     {
         "table_name": "tb_reckoning",
-        "table_description": "消费账单表，表名为tb_reckoning，包含消费收款项类别、金额(负数为冲减)、数量(-1的话为冲减)、对应的房间id、对应的房单id、操作员id、入住客id、状态（未结-0,已结-1,转账-2,冲减-3）、是否为结账结算的账单 : 0-否 1-是、是否为转账 : 0-不是 1-转出账 2-转入账、结账时间戳、营业时间、创建时间、修改时间、备注、酒店id、会员余额、渠道id、是否为会员权益相关的帐单（1-是购买会员权益的账单，0-不是）",
+        "table_description": "消费账单表（可统计营收），表名为tb_reckoning，包含消费收款项类别、金额(负数为冲减)、数量(-1的话为冲减)、对应的房间id、对应的房单id、操作员id、入住客id、状态（未结-0,已结-1,转账-2,冲减-3）、是否为结账结算的账单 : 0-否 1-是、是否为转账 : 0-不是 1-转出账 2-转入账、结账时间戳、营业时间、创建时间、修改时间、备注、酒店id、会员余额、渠道id、是否为会员权益相关的帐单（1-是购买会员权益的账单，0-不是）",
         "fields": [
             {
                 "column_name": "id",
@@ -1947,7 +1952,7 @@
             {
                 "column_name": "sys_bill_id",
                 "column_type": "int",
-                "column_comment": "消费收款项类别"
+                "column_comment": "消费收款项类别（对应tb_sys_bill表的id字段，并通过tb_sys_bill表的type字段来区分消费项与收款项）"
             },
             {
                 "column_name": "money",

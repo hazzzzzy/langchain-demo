@@ -3,17 +3,19 @@ import os
 from typing import Annotated, TypedDict
 from typing import Literal
 
-from langchain_core.messages import BaseMessage, AIMessage, ToolMessage
+from langchain_core.messages import BaseMessage
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_deepseek import ChatDeepSeek
 from langgraph.graph import StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
 
-from config.step_by_step_prompt import AGENT_SYSTEM_PROMPT, AGENT_USER_PROMPT
+from config.logger_config import setup_logging
+from config.prompt.step_by_step_prompt import AGENT_SYSTEM_PROMPT, AGENT_USER_PROMPT
 from utils.agent_tools import agent_search_vector, query_mysql
 
 os.environ["LANGCHAIN_PROJECT"] = "Text2SQL_Agent"
+logger = setup_logging()
 
 
 class AgentState(TypedDict):
@@ -24,7 +26,7 @@ class AgentState(TypedDict):
 
 # 1. 初始化 LLM 并绑定工具
 # bind_tools 让 DeepSeek 知道它有了“查数据库”的能力
-llm = ChatDeepSeek(model="deepseek-chat", temperature=0)
+llm = ChatDeepSeek(model="deepseek-chat", temperature=0.6)
 tools = [query_mysql, agent_search_vector]
 llm_with_tools = llm.bind_tools(tools)
 
@@ -86,7 +88,7 @@ if __name__ == '__main__':
     app = build_graph()
     # create_visual_graph_pic(app, 'step_by_step')
 
-    question = '哪个协议单位欠款最多'
+    question = '吴浩贤住过哪间房间'
     inputs = {
         "messages": [
             SystemMessage(content=AGENT_SYSTEM_PROMPT.format(hotel_id)),
@@ -99,57 +101,56 @@ if __name__ == '__main__':
     #     # 这里只是为了让你看到过程，实际可以直接用 app.invoke
     #     for node, values in chunk.items():
     #         print(f"--- 节点 {node} 完成 ---")
-    print("====== 开始运行 Agent ======")
+    logger.info("====== 开始运行 Agent ======")
 
     # stream_mode="values" 会返回每次状态更新后的完整 State
     # 但这里我们用默认模式，只获取增量更新，这样更方便看每一步做了什么
-    # for event in app.stream(inputs):
-    #     print(event)
-    # 1. 捕获 Agent 的思考与行动
-    # if "agent" in event:
-    #     message = event["agent"]["messages"][0]
-    #     content = message.content
-    #     tool_calls = message.tool_calls
+    for event in app.stream(inputs):
+        # print(event)
+        # 1. 捕获 Agent 的思考与行动
+        if "agent" in event:
+            message = event["agent"]["messages"][0]
+            content = message.content
+            tool_calls = message.tool_calls
+
+            # 打印 AI 的思考文本 (如果有)
+            if content:
+                logger.info(f"[AI 回答]: {content}")
+
+            # 打印 AI 决定调用的工具
+            if tool_calls:
+                for tc in tool_calls:
+                    logger.info(f"[调用工具] {tc['name']}: {tc['args']}")
+
+        # 2. 捕获工具的返回结果
+        elif "tools" in event:
+            # ToolNode 返回的是 ToolMessage
+            message = event["tools"]["messages"][0]
+            logger.info(f"[工具返回]: {message.content[:200]}...")  # 只打印前200字防止刷屏
+
+    logger.info("====== 运行结束 ======")
+
+    # # 1. 运行并获取最终状态
+    # final_state = app.invoke(inputs)
     #
-    #     # 打印 AI 的思考文本 (如果有)
-    #     if content:
-    #         print(f"\n🤖 [AI 思考]: {content}")
+    # print("\n====== 推理全过程复盘 ======\n")
     #
-    #     # 打印 AI 决定调用的工具
-    #     if tool_calls:
-    #         for tc in tool_calls:
-    #             print(f"   👉 [准备行动]: 调用工具 {tc['name']}")
-    #             print(f"      参数: {tc['args']}")
+    # # 2. 遍历历史消息
+    # for msg in final_state["messages"]:
     #
-    # # 2. 捕获工具的返回结果
-    # elif "tools" in event:
-    #     # ToolNode 返回的是 ToolMessage
-    #     message = event["tools"]["messages"][0]
-    #     print(f"\n🔍 [工具返回结果]: {message.content[:200]}...")  # 只打印前200字防止刷屏
-
-    # print("\n====== 运行结束 ======")
-
-    # 1. 运行并获取最终状态
-    final_state = app.invoke(inputs)
-
-    print("\n====== 推理全过程复盘 ======\n")
-
-    # 2. 遍历历史消息
-    for msg in final_state["messages"]:
-
-        if isinstance(msg, HumanMessage):
-            print(f"👤 [用户]: {msg.content}")
-
-        elif isinstance(msg, AIMessage):
-            # 检查是否有工具调用
-            if msg.tool_calls:
-                print(f"🤖 [AI 思考]: {msg.content}")  # DeepSeek 有时会把思考写在 content 里
-                for tc in msg.tool_calls:
-                    print(f"🛠️ [AI 决定调用工具]: {tc['name']} -> 参数: {tc['args']}")
-            else:
-                print(f"🤖 [AI 最终回答]: {msg.content}")
-
-        elif isinstance(msg, ToolMessage):
-            print(f"📊 [数据库/工具 反馈]: {msg.content}")
-
-        print("-" * 50)
+    #     if isinstance(msg, HumanMessage):
+    #         print(f"👤 [用户]: {msg.content}")
+    #
+    #     elif isinstance(msg, AIMessage):
+    #         # 检查是否有工具调用
+    #         if msg.tool_calls:
+    #             print(f"🤖 [AI 思考]: {msg.content}")  # DeepSeek 有时会把思考写在 content 里
+    #             for tc in msg.tool_calls:
+    #                 print(f"🛠️ [AI 决定调用工具]: {tc['name']} -> 参数: {tc['args']}")
+    #         else:
+    #             print(f"🤖 [AI 最终回答]: {msg.content}")
+    #
+    #     elif isinstance(msg, ToolMessage):
+    #         print(f"📊 [数据库/工具 反馈]: {msg.content}")
+    #
+    #     print("-" * 50)

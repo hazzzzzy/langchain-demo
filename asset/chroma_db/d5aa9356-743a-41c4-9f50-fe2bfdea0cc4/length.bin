@@ -1,0 +1,1 @@
+invalid type: string "  - id (int unsigned): 编号\n  - hotel_id (int): 对应的酒店id\n  - staff_id (int): 对应的员工id\n  - create_time (datetime): 创建时间\n  - update_time (timestamp): 更新时间\n  - state (tinyint): 状态:99是删除状态\n  - role_id (int): 弃用\n", expected f64\n  - price (decimal(10,2)): 价格\n  - old_price (decimal(10,2)): 原房价\n、默认0、有
