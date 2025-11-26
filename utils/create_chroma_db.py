@@ -40,7 +40,7 @@ for table in sql_data:
         metadata={
             "table_structure": table_structure,
             "table_name": table_name,
-            "table_description": table_description,
+            "table_zh_name": table_description.split('，表名为')[0],
             # "type": "table_structure"
         }
     )

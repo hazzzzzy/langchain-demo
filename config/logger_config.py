@@ -41,6 +41,14 @@ def logging_config():
 
 def setup_logging():
     logging.config.dictConfig(logging_config())
+    # 1. 屏蔽 httpx 和 httpcore 的 INFO 日志 (这是最主要的来源)
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
+
+    # 2. (可选) 如果还需要屏蔽 openai 或 langchain 内部的繁杂日志
+    # logging.getLogger("openai").setLevel(logging.WARNING)
+    # logging.getLogger("langchain").setLevel(logging.WARNING)
+    logging.getLogger("chroma").setLevel(logging.WARNING)
     logger = logging.getLogger(__name__)
     return logger
 

@@ -3,16 +3,21 @@ import os
 from typing import Annotated, TypedDict
 from typing import Literal
 
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import AIMessage, BaseMessage
 from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_deepseek import ChatDeepSeek
+from langgraph.constants import END
 from langgraph.graph import StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
 
 from config.logger_config import setup_logging
-from config.prompt.step_by_step_prompt import AGENT_SYSTEM_PROMPT, AGENT_USER_PROMPT
+from config.prompt.step_by_step_prompt import AGENT_SYSTEM_PROMPT, AGENT_USER_PROMPT, SUMMARY_AGENT_SYSTEM_PROMPT, \
+    SUMMARY_AGENT_USER_PROMPT
 from utils.agent_tools import agent_search_vector, query_mysql
+from utils.create_visual_graph_pic import create_visual_graph_pic
 
 os.environ["LANGCHAIN_PROJECT"] = "Text2SQL_Agent"
 logger = setup_logging()
@@ -40,12 +45,35 @@ def agent_node(state: AgentState):
     return {"messages": [response]}
 
 
+def summary_node(state: AgentState):
+    messages = state["messages"]
+    # print(messages)
+
+    question = messages[1].content
+    answer = messages[-1].content
+    # logger.info(question,)
+    # logger.info(answer)
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", SUMMARY_AGENT_SYSTEM_PROMPT),
+        ("user", SUMMARY_AGENT_USER_PROMPT)
+    ])
+
+    chain = prompt | llm | StrOutputParser()
+    summary_context = chain.invoke({
+        'question': question,
+        'answer': answer,
+    })
+    logger.info(summary_context)
+    return {"messages": [AIMessage(content=summary_context)]}
+
+
 # 3. 定义【工具节点】 (Action)
 # ToolNode 是 LangGraph 自带的，它会自动识别 LLM 返回的 tool_calls 并执行
 tool_node = ToolNode(tools)
 
 
-def should_continue(state: AgentState) -> Literal["tools", "__end__"]:
+def should_continue(state: AgentState) -> Literal["tools", "summary"]:
     messages = state["messages"]
     last_message = messages[-1]
 
@@ -54,27 +82,33 @@ def should_continue(state: AgentState) -> Literal["tools", "__end__"]:
         return "tools"
 
     # 否则说明它觉得信息够了，已经生成了最终文本 -> 结束
-    return "__end__"
+    return "summary"
 
 
 def build_graph():
     workflow = StateGraph(AgentState)
 
     # 添加节点
-    workflow.add_node("agent", agent_node)
+    workflow.add_node("ReAct", agent_node)
     workflow.add_node("tools", tool_node)
+    workflow.add_node("summary", summary_node)
 
     # 设置入口
-    workflow.set_entry_point("agent")
+    workflow.set_entry_point("ReAct")
 
     # 添加条件边：AI 思考完后，决定是去查库(tools)还是结束(END)
     workflow.add_conditional_edges(
-        "agent",
+        "ReAct",
         should_continue,
+        {
+            'tools':"tools",
+            'summary':"summary",
+        }
     )
 
     # 添加普通边：工具查完后，必须把结果扔回给 AI，让它继续思考
-    workflow.add_edge("tools", "agent")
+    workflow.add_edge("tools", "ReAct")
+    workflow.add_edge("summary", END)  # 答案生成完 -> 结束
 
     app = workflow.compile()
     return app
@@ -86,9 +120,9 @@ if __name__ == '__main__':
     user_id = 1384
 
     app = build_graph()
-    # create_visual_graph_pic(app, 'step_by_step')
+    # create_visual_graph_pic(app, 'step_by_step_2')
 
-    question = '吴浩贤住过哪间房间'
+    question = '查一下那个会员消费最多'
     inputs = {
         "messages": [
             SystemMessage(content=AGENT_SYSTEM_PROMPT.format(hotel_id)),
@@ -96,19 +130,14 @@ if __name__ == '__main__':
         ]
     }
 
-    # # 运行图
-    # for chunk in app.stream(inputs):
-    #     # 这里只是为了让你看到过程，实际可以直接用 app.invoke
-    #     for node, values in chunk.items():
-    #         print(f"--- 节点 {node} 完成 ---")
     logger.info("====== 开始运行 Agent ======")
 
     # stream_mode="values" 会返回每次状态更新后的完整 State
     # 但这里我们用默认模式，只获取增量更新，这样更方便看每一步做了什么
     for event in app.stream(inputs):
-        # print(event)
         # 1. 捕获 Agent 的思考与行动
         if "agent" in event:
+            # logger.info(event)
             message = event["agent"]["messages"][0]
             content = message.content
             tool_calls = message.tool_calls
@@ -124,6 +153,7 @@ if __name__ == '__main__':
 
         # 2. 捕获工具的返回结果
         elif "tools" in event:
+            # logger.info('工具调用')
             # ToolNode 返回的是 ToolMessage
             message = event["tools"]["messages"][0]
             logger.info(f"[工具返回]: {message.content[:200]}...")  # 只打印前200字防止刷屏

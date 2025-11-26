@@ -23,7 +23,7 @@ def query_mysql(query: str):
         code: 状态码（0-成功，-1-失败，-2-不允许更改数据）
         result: 状态码为0时，返回查询结果；状态码不为0时，返回查询失败原因
     """
-    # print(f"🔍 [工具执行] 正在执行 SQL: {query}")
+    logger.info(f"[工具调用] 正在执行 SQL: {query}")
     try:
         query_header = ['SELECT', 'select', 'show', 'SHOW', 'DESCRIBE', 'describe']
         if not any([query.startswith(i) for i in query_header]):
@@ -42,38 +42,43 @@ def query_mysql(query: str):
 
 
 @tool
-def agent_search_vector(query, k=5, min_score: float = 2.0):
+def agent_search_vector(query, k=5, schema_min_score: float = 2.0, qa_min_score: float = 0.5):
     """
-    这是一个检索工具,基于语义相似度检索向量数据库中的相关文档。
+    这是一个检索工具,基于语义相似度检索表结构与预设问答sql向量数据库中的相关文档。
     当需要理解表结构、字段含义时，则必须使用此工具
 
     Args:
         query (str): 需要检索的查询文本（如用户的问题或关键词）。
-        k(int): 返回的相关表结构文档数量，默认值5
+        k (int): 返回的相关表结构与预设问答sql文档数量，默认值5
+        schema_min_score (float): 表结构文档的分数阈值，分数越低表示越相关，默认值2.0。
+        qa_min_score (float): 预设问答sql文档的分数阈值，分数越低表示越相关，默认值0.5。
 
     Returns:
         dict: {
-                'table_result': List[Document],   # 表结构文档
-                'qa_result': List[Document]       # 推荐的sql问答文档
+                'schema_result': List[Document],   # 表结构文档
+                'qa_result': List[Document]       # 预设问答sql文档
                 }
     """
-    # print(f"🔍 [工具执行] 正在检索向量数据库: {query}")
-    vs_table = load_vectorstore('table_structure')
+    logger.info(f"[工具调用] 正在检索向量数据库: {query}")
+    vs_schema = load_vectorstore('table_structure')
     vs_qa = load_vectorstore('qa_sql')
-    table_search_result = vs_table.similarity_search_with_score(query, k=k)
+
+    schema_search_result = vs_schema.similarity_search_with_score(query, k=k)
     qa_search_result = vs_qa.similarity_search_with_score(query, k=k)
-    # print(search_result)
+
     # 分数越低越相关
-    table_result, qa_result = [], []
-    for doc, score in table_search_result:
-        if score < min_score:
+    schema_result, qa_result = '', ''
+    for doc, score in schema_search_result:
+        if score < schema_min_score:
             logger.info(doc.metadata['table_name'])
-            table_result.append(doc)
+            doc = f'表名：{doc.metadata['table_name']}\n表中文名：{doc.metadata['table_zh_name']}\n表结构：{doc.metadata['table_structure']}\n'
+            schema_result += doc
     for doc, score in qa_search_result:
-        if score <= 0.5:
+        if score <= qa_min_score:
             # logger.info(doc.metadata['table_name'])
-            qa_result.append(doc)
-    return {'qa_result': qa_result, 'table_result': table_result}
+            doc = f'该句sql的对应场景：{doc.page_content}\n备注：{doc.metadata['remark']}\nsql内容：{doc.metadata['a']}\n'
+            qa_result += doc
+    return {'qa_result': qa_result, 'schema_result': schema_result}
 
 
 if __name__ == '__main__':

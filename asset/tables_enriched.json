@@ -882,7 +882,7 @@
                 "column_type": "double(5,4)",
                 "column_comment": "税率"
             },
-                        {
+            {
                 "column_name": "state",
                 "column_type": "bit(1)",
                 "column_comment": "酒店营业状态，31-开启，51-关闭"
@@ -2104,7 +2104,7 @@
     },
     {
         "table_name": "tb_room",
-        "table_description": "房间信息表，表名为tb_room，包含房间id、房间所处楼栋id、房间所处楼层id、房间号、房间状态（4：空闲；2：打扫；3：维修；7：停用，99：删除）、房间创建时间、房间更新时间、房间对应的锁号、房间类型",
+        "table_description": "房间信息表（此表没有hotel_id，需要去tb_room_type查），表名为tb_room，包含房间id、房间所处楼栋id、房间所处楼层id、房间号、房间状态（4：空闲；2：打扫；3：维修；7：停用，99：删除）、房间创建时间、房间更新时间、房间对应的锁号、房间类型",
         "fields": [
             {
                 "column_name": "id",
@@ -2676,11 +2676,6 @@
                 "column_comment": ""
             }
         ]
-    },
-    {
-        "table_name": "tb_view_ota",
-        "table_description": "View 'db_zxwl_test.tb_view_ota' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them，表名为tb_view_ota，包含",
-        "fields": []
     },
     {
         "table_name": "tm_order_room_hot_spring_ticket",
