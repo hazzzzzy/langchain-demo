@@ -2104,7 +2104,7 @@
     },
     {
         "table_name": "tb_room",
-        "table_description": "房间信息表（此表没有hotel_id，需要去tb_room_type查），表名为tb_room，包含房间id、房间所处楼栋id、房间所处楼层id、房间号、房间状态（4：空闲；2：打扫；3：维修；7：停用，99：删除）、房间创建时间、房间更新时间、房间对应的锁号、房间类型",
+        "table_description": "房间信息表（此表没有hotel_id，需要去tb_room_type查），表名为tb_room，包含房间id、房间所处楼栋id、房间所处楼层id、房间号、房间状态（4：空闲；2：待清洁脏房；3：维修；7：停用，99：删除）、房间创建时间、房间更新时间、房间对应的锁号、房间类型",
         "fields": [
             {
                 "column_name": "id",
@@ -2129,7 +2129,7 @@
             {
                 "column_name": "state",
                 "column_type": "tinyint",
-                "column_comment": "房间状态（4：空闲；2：打扫；3：维修；7：停用，99：删除）"
+                "column_comment": "房间状态（4：空闲；2：待清洁脏房；3：维修；7：停用，99：删除）"
             },
             {
                 "column_name": "create_time",

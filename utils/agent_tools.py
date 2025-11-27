@@ -23,7 +23,7 @@ def query_mysql(query: str):
         code: 状态码（0-成功，-1-失败，-2-不允许更改数据）
         result: 状态码为0时，返回查询结果；状态码不为0时，返回查询失败原因
     """
-    logger.info(f"[工具调用] 正在执行 SQL: {query}")
+    # logger.info(f"[工具调用] 正在执行 SQL: {query}")
     try:
         query_header = ['SELECT', 'select', 'show', 'SHOW', 'DESCRIBE', 'describe']
         if not any([query.startswith(i) for i in query_header]):
@@ -59,7 +59,7 @@ def agent_search_vector(query, k=5, schema_min_score: float = 2.0, qa_min_score:
                 'qa_result': List[Document]       # 预设问答sql文档
                 }
     """
-    logger.info(f"[工具调用] 正在检索向量数据库: {query}")
+    # logger.info(f"[工具调用] 正在检索向量数据库: {query}")
     vs_schema = load_vectorstore('table_structure')
     vs_qa = load_vectorstore('qa_sql')
 

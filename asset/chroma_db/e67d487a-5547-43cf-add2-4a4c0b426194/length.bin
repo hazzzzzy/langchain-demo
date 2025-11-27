@@ -1,0 +1,12 @@
+  - id (int): 餐券核销记录id
+  - order_room_id (int): 房单id
+  - date (date): 对应日期
+  - num (int): 核销数量
+  - create_time (datetime): 创建时间
+  - hotel_id (int): 酒店id
+  - room_id (int): 房间id
+  - door (varchar(50)): 房号
+  - guest_name (varchar(50)): 入住客名字
+  - staff_id (int): 操作员工id
+  - member_id (int): 入住客id
+  - people (int): 入住人数
