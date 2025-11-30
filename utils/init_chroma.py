@@ -1,3 +1,4 @@
+from chromadb import Settings
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
@@ -13,7 +14,8 @@ def load_vectorstore(collection_name):
     vectorstore = Chroma(
         embedding_function=model,
         persist_directory=CHROMA_DB_PATH,
-        collection_name=collection_name
+        collection_name=collection_name,
+        client_settings=Settings(anonymized_telemetry=False)
     )
 
     return vectorstore

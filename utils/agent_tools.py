@@ -42,7 +42,7 @@ def query_mysql(query: str):
 
 
 @tool
-def agent_search_vector(query, k=5, schema_min_score: float = 2.0, qa_min_score: float = 0.5):
+def agent_search_vector(query: str, k: int = 5, schema_min_score: float = 2.0, qa_min_score: float = 0.5):
     """
     这是一个检索工具,基于语义相似度检索表结构与预设问答sql向量数据库中的相关文档。
     当需要理解表结构、字段含义时，则必须使用此工具
@@ -63,16 +63,17 @@ def agent_search_vector(query, k=5, schema_min_score: float = 2.0, qa_min_score:
     vs_schema = load_vectorstore('table_structure')
     vs_qa = load_vectorstore('qa_sql')
 
-    schema_search_result = vs_schema.similarity_search_with_score(query, k=k)
+    # schema_search_result = vs_schema.similarity_search_with_score(query, k=k)
+    schema_search_result = vs_schema.max_marginal_relevance_search(query=query, k=k, fetch_k=20, lambda_mult=0.5)
     qa_search_result = vs_qa.similarity_search_with_score(query, k=k)
 
     # 分数越低越相关
     schema_result, qa_result = '', ''
-    for doc, score in schema_search_result:
-        if score < schema_min_score:
-            logger.info(doc.metadata['table_name'])
-            doc = f'表名：{doc.metadata['table_name']}\n表中文名：{doc.metadata['table_zh_name']}\n表结构：{doc.metadata['table_structure']}\n'
-            schema_result += doc
+    for doc in schema_search_result:
+        # if score < schema_min_score:
+        logger.info(doc.metadata['table_name'])
+        doc = f'表名：{doc.metadata['table_name']}\n表中文名：{doc.metadata['table_zh_name']}\n表结构：{doc.metadata['table_structure']}\n'
+        schema_result += doc
     for doc, score in qa_search_result:
         if score <= qa_min_score:
             # logger.info(doc.metadata['table_name'])
@@ -83,7 +84,7 @@ def agent_search_vector(query, k=5, schema_min_score: float = 2.0, qa_min_score:
 
 if __name__ == '__main__':
     # print(query_mysql('SELECT * FROM tb_admin_log LIMIT 5;'))
-    query = '列出昨日各酒店收入情况'
-    vs_qa = load_vectorstore('qa_sql')
-    qa_search_result = vs_qa.similarity_search_with_score(query, k=5)
+    query = '明日预订情况'
+    vs_qa = load_vectorstore('table_structure')
+    qa_search_result = vs_qa.max_marginal_relevance_search(query=query, k=5, fetch_k=20, lambda_mult=0.5)
     print(qa_search_result)

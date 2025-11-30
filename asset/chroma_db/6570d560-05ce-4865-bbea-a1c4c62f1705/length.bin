@@ -1,0 +1,9 @@
+  - id (int unsigned): 酒店员工id
+  - username (varchar(20)): 酒店员工登录账号，等同于tel字段
+  - tel (varchar(15)): 酒店员工联系电话
+  - name (varchar(28)): 酒店员工姓名
+  - num (varchar(20)): 酒店员工身份证号
+  - create_time (datetime): 创建时间
+  - update_time (timestamp): 更新时间
+  - state (tinyint): 状态:99是删除状态，101为正常
+��有

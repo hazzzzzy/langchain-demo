@@ -1,4 +1,5 @@
 import json
+import time
 
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
@@ -7,6 +8,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 CHROMA_DB_PATH = '../asset/chroma_db'
 SQL_FILE_PATH = '../asset/tables_enriched.json'
 QA_FILE_PATH = '../asset/qa_sql.json'
+
+start_time = time.time()
 model = HuggingFaceEmbeddings(model_name='../models/bge-base-zh-v1.5')
 
 with open(SQL_FILE_PATH, 'r', encoding='utf-8') as f:
@@ -72,7 +75,8 @@ for collection_name, docs in collections.items():
         persist_directory=CHROMA_DB_PATH,
         collection_name=collection_name
     )
-
+end_time = time.time()
+print(f'向量数据库创建完成，耗时 {(end_time - start_time):2f} 秒')
 
 #
 # vs_qa = Chroma(

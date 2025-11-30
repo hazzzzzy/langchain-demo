@@ -64,7 +64,6 @@ def agent_node(state: AgentState):
 
 # 3. 定义【工具节点】 (Action)
 # ToolNode 是 LangGraph 自带的，它会自动识别 LLM 返回的 tool_calls 并执行
-tool_node = ToolNode(tools)
 
 
 def should_continue(state: AgentState) -> Literal["tools", "__end__"]:
@@ -74,7 +73,7 @@ def should_continue(state: AgentState) -> Literal["tools", "__end__"]:
     # 如果 LLM 的回复里包含 tool_calls，说明它想查库 -> 转去工具节点
     if last_message.tool_calls:
         return "tools"
-    print(messages)
+    # print(messages)
     # 否则说明它觉得信息够了，已经生成了最终文本 -> 结束
     return "__end__"
 
@@ -84,6 +83,8 @@ def build_graph():
 
     # 添加节点
     workflow.add_node("ReAct", agent_node)
+
+    tool_node = ToolNode(tools)
     workflow.add_node("tools", tool_node)
     # workflow.add_node("summary", summary_node)
 
@@ -112,7 +113,8 @@ if __name__ == '__main__':
     app = build_graph()
     # create_visual_graph_pic(app, 'step_by_step_2')
 
-    question = '根据现在的预订进度，建议一下明天复式大床房的价格应该定多少？'
+    # question = '根据现在的预订进度，建议一下明天复式大床房的价格应该定多少？'
+    question = '当前的房态情况如何'
     inputs = {
         "messages": [
             SystemMessage(content=AGENT_SYSTEM_PROMPT.format(hotel_id)),
